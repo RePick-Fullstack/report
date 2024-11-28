@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: report
+  data:
+    mongodb:
+      uri: mongodb+srv://yoop80075:w!048576@pdf-crawling-cluster.9s8zi.mongodb.net/research_db
