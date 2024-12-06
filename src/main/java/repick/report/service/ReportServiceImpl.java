@@ -1,6 +1,7 @@
 package repick.report.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import repick.report.domain.Report;
 import repick.report.repository.ReportRepository;
@@ -15,6 +16,6 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<Report> getLastTenReports() {
-        return reportRepository.findTop10ByOrderByIdDesc();
+        return reportRepository.findTop10ByReportTypeOrderByReportDateDesc(PageRequest.of(0, 10));
     }
 }

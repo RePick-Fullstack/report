@@ -21,5 +21,4 @@ public class ReportController {
     public List<Report> getLastTenReports() {
         return reportService.getLastTenReports();
     }
-
 }

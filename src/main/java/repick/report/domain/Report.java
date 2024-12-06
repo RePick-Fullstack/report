@@ -15,7 +15,7 @@ public class Report {
     @Id
     private ObjectId id;
     private int report_id;
-    private String sector_name;
+    private String securities_firm;
     private String company_code;
     private String company_name;
     private String report_title;
