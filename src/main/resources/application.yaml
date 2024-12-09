@@ -3,4 +3,4 @@ spring:
     name: report
   data:
     mongodb:
-      uri: mongodb+srv://yoop80075:w!048576@pdf-crawling-cluster.9s8zi.mongodb.net/research_db
+      uri: mongodb://jogyoungjun:131072@ec2-13-208-253-99.ap-northeast-3.compute.amazonaws.com:27017/research_db
