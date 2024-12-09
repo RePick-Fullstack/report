@@ -13,6 +13,12 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v4
 
+    - name: Checkout another repository
+      uses: actions/checkout@v3
+      with:
+        repository: The-Naeun-Economy/helm
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: helm
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -93,6 +99,6 @@ jobs:
 
     - name: Helm install
       run: |
-        helm upgrade --install report ./report
+        helm upgrade --install report ./helm/report
           
           
