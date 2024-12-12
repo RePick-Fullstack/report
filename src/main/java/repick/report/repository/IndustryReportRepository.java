@@ -16,4 +16,7 @@ import java.util.List;
 public interface IndustryReportRepository extends MongoRepository<IndustryReport, ObjectId> {
     @Query(value = "{ 'report_type': 'Industry' }", sort = "{ 'report_date': -1 }")
     Page<IndustryReport> findAllIndustry(Pageable pageable);
+
+    @Query(value = "{ 'report_type': 'Industry','report_id': { $in: ?0 } }")
+    Page<IndustryReport> findReportId(List<Integer> reportIds, Pageable pageable);
 }
