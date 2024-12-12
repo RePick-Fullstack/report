@@ -1,10 +1,13 @@
 package repick.report.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import repick.report.domain.Report;
-import repick.report.repository.ReportRepository;
+import repick.report.domain.CompanyReport;
+import repick.report.domain.IndustryReport;
+import repick.report.repository.CompanyReportRepository;
+import repick.report.repository.IndustryReportRepository;
 
 import java.util.List;
 
@@ -12,10 +15,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReportServiceImpl implements ReportService {
 
-    private final ReportRepository reportRepository;
+    private final CompanyReportRepository companyReportRepository;
+    private final IndustryReportRepository industryReportRepository;
 
     @Override
-    public List<Report> getLastTenReports() {
-        return reportRepository.findTop10ByReportTypeOrderByReportDateDesc(PageRequest.of(0, 10));
+    public Page<CompanyReport> getLastTenReports(int page, int size) {
+        return companyReportRepository.findTop10ByReportTypeOrderByReportDateDesc(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<IndustryReport> getIndustryReports(int page, int size) {
+        return industryReportRepository.findAllIndustry(PageRequest.of(page, size));
     }
 }

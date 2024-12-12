@@ -11,14 +11,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "reports")
-public class Report {
+public class IndustryReport {
     @Id
     private ObjectId id;
     private int report_id;
-    private String securities_firm;
-    private String company_code;
-    private String company_name;
+    private String sector;
     private String report_title;
-    private String report_date;
+    private String securities_firm;
     private String pdf_link;
+    private String report_date;
+    private String report_type;
 }
