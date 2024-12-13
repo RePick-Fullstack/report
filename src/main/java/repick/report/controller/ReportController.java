@@ -45,8 +45,7 @@ public class ReportController {
             @RequestParam int size
     ) {
         Long id = userService.userIdFromToken(Authorization);
-        User user = userService.getUserByUserId(id);
-        return reportService.getViewCompanyReports(user, page, size);
+        return userService.getCompanyReportsByUserId(id, page, size);
     }
 
     @GetMapping("/user/viewindustryreports")
@@ -56,8 +55,7 @@ public class ReportController {
             @RequestParam int size
     ) {
         Long id = userService.userIdFromToken(Authorization);
-        User user = userService.getUserByUserId(id);
-        return reportService.getViewIndustryReports(user, page, size);
+        return userService.getIndustryReportsByUserId(id, page, size);
     }
 
 }
