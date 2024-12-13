@@ -3,6 +3,7 @@ package repick.report.repository;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -26,7 +27,7 @@ public interface UserReportRepository extends MongoRepository<User, ObjectId> {
             "{ $match: { 'reportDetails.report_type': 'Company' } }",
             "{ $project: { _id: '$reportDetails._id', company_name: '$reportDetails.company_name', report_title: '$reportDetails.report_title', securities_firm: '$reportDetails.securities_firm', pdf_link: '$reportDetails.pdf_link', report_date: '$reportDetails.report_date', report_id: '$reportDetails.report_id', report_type: '$reportDetails.report_type' } }"
     })
-    Page<CompanyReport> findCompanyReportsByUserId(String userId, Pageable pageable);
+    Slice<CompanyReport> findCompanyReportsByUserId(String userId, Pageable pageable);
 
     @Aggregation(pipeline = {
             "{ $match: { 'userId': ?0 } }",
@@ -35,5 +36,5 @@ public interface UserReportRepository extends MongoRepository<User, ObjectId> {
             "{ $match: { 'reportDetails.report_type': 'Company' } }",
             "{ $project: { _id: '$reportDetails._id', company_name: '$reportDetails.company_name', report_title: '$reportDetails.report_title', securities_firm: '$reportDetails.securities_firm', pdf_link: '$reportDetails.pdf_link', report_date: '$reportDetails.report_date', report_id: '$reportDetails.report_id', report_type: '$reportDetails.report_type' } }"
     })
-    Page<IndustryReport> findIndustryReportsByUserId(String userId, Pageable pageable);
+    Slice<IndustryReport> findIndustryReportsByUserId(String userId, Pageable pageable);
 }

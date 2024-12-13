@@ -3,6 +3,7 @@ package repick.report.controller;
 import lombok.RequiredArgsConstructor;
 import org.bson.json.JsonObject;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Slice;
 import org.springframework.web.bind.annotation.*;
 import repick.report.domain.CompanyReport;
 import repick.report.domain.IndustryReport;
@@ -39,7 +40,7 @@ public class ReportController {
     }
 
     @GetMapping("/user/viewcompanyreports")
-    public Page<CompanyReport> getViewCompanyReports(
+    public Slice<CompanyReport> getViewCompanyReports(
             @RequestHeader String Authorization,
             @RequestParam int page,
             @RequestParam int size
@@ -49,7 +50,7 @@ public class ReportController {
     }
 
     @GetMapping("/user/viewindustryreports")
-    public Page<IndustryReport> getViewIndustryReports(
+    public Slice<IndustryReport> getViewIndustryReports(
             @RequestHeader String Authorization,
             @RequestParam int page,
             @RequestParam int size
