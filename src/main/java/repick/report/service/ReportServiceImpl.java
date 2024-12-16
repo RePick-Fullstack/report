@@ -10,8 +10,6 @@ import repick.report.domain.User;
 import repick.report.repository.CompanyReportRepository;
 import repick.report.repository.IndustryReportRepository;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class ReportServiceImpl implements ReportService {
@@ -37,5 +35,15 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Page<CompanyReport> getViewCompanyReports(User user, int page, int size) {
         return companyReportRepository.findReportId(user.getReports(),PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<IndustryReport> getKeywordIndustryReports(String keyword, int page, int size) {
+        return industryReportRepository.findByKeyword(keyword, PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<CompanyReport> getKeywordCompanyReports(String keyword, int page, int size) {
+        return companyReportRepository.findByKeyword(keyword, PageRequest.of(page, size));
     }
 }

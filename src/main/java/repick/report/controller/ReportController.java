@@ -1,7 +1,6 @@
 package repick.report.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.bson.json.JsonObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Slice;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +9,6 @@ import repick.report.domain.IndustryReport;
 import repick.report.domain.User;
 import repick.report.service.ReportService;
 import repick.report.service.UserService;
-
-import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -29,6 +26,22 @@ public class ReportController {
     @GetMapping("/industry")
     public Page<IndustryReport> getIndustryReports(@RequestParam int page, @RequestParam int size) {
         return reportService.getIndustryReports(page, size);
+    }
+
+    @GetMapping("/companykeyword")
+    public Page<CompanyReport> getCompanyKeyword(
+            @RequestParam String keyword,
+            @RequestParam int page,
+            @RequestParam int size) {
+        return reportService.getKeywordCompanyReports(keyword, page, size);
+    }
+
+    @GetMapping("/industrykeyword")
+    public Page<IndustryReport> getIndustryKeyword(
+            @RequestParam String keyword,
+            @RequestParam int page,
+            @RequestParam int size) {
+        return reportService.getKeywordIndustryReports(keyword, page, size);
     }
 
     @GetMapping("/user")
