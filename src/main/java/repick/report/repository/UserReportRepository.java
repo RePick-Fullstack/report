@@ -37,4 +37,22 @@ public interface UserReportRepository extends MongoRepository<User, ObjectId> {
             "{ $project: { _id: '$reportDetails._id', sector: '$reportDetails.sector', report_title: '$reportDetails.report_title', securities_firm: '$reportDetails.securities_firm', pdf_link: '$reportDetails.pdf_link', report_date: '$reportDetails.report_date', report_id: '$reportDetails.report_id', report_type: '$reportDetails.report_type' } }"
     })
     Slice<IndustryReport> findIndustryReportsByUserId(String userId, Pageable pageable);
+
+    @Aggregation(pipeline = {
+            "{ $match: { 'userId': ?0 } }",
+            "{ $lookup: { from: 'reports', localField: 'bookmark', foreignField: 'report_id', as: 'reportDetails' } }",
+            "{ $unwind: '$reportDetails' }",
+            "{ $match: { 'reportDetails.report_type': 'Company' } }",
+            "{ $project: { _id: '$reportDetails._id', company_name: '$reportDetails.company_name', report_title: '$reportDetails.report_title', securities_firm: '$reportDetails.securities_firm', pdf_link: '$reportDetails.pdf_link', report_date: '$reportDetails.report_date', report_id: '$reportDetails.report_id', report_type: '$reportDetails.report_type' } }"
+    })
+    Slice<CompanyReport> findBookmarkCompanyReportsByUserId(String userId, Pageable pageable);
+
+    @Aggregation(pipeline = {
+            "{ $match: { 'userId': ?0 } }",
+            "{ $lookup: { from: 'reports', localField: 'bookmark', foreignField: 'report_id', as: 'reportDetails' } }",
+            "{ $unwind: '$reportDetails' }",
+            "{ $match: { 'reportDetails.report_type': 'Industry' } }",
+            "{ $project: { _id: '$reportDetails._id', sector: '$reportDetails.sector', report_title: '$reportDetails.report_title', securities_firm: '$reportDetails.securities_firm', pdf_link: '$reportDetails.pdf_link', report_date: '$reportDetails.report_date', report_id: '$reportDetails.report_id', report_type: '$reportDetails.report_type' } }"
+    })
+    Slice<IndustryReport> findBookmarkIndustryReportsByUserId(String userId, Pageable pageable);
 }

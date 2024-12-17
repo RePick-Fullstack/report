@@ -72,4 +72,43 @@ public class ReportController {
         return userService.getIndustryReportsByUserId(id, page, size);
     }
 
+    @GetMapping("/user/bookmarkcompanyreports")
+    public Slice<CompanyReport> getBookmarkCompanyReports(
+            @RequestHeader String Authorization,
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        Long id = userService.userIdFromToken(Authorization);
+        return userService.getBookmarkCompanyReportsByUserId(id, page, size);
+    }
+
+    @GetMapping("/user/bookmarkindustryreports")
+    public Slice<IndustryReport> getBookmarkIndustryReports(
+            @RequestHeader String Authorization,
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        Long id = userService.userIdFromToken(Authorization);
+        return userService.getBookmarkIndustryReportsByUserId(id, page, size);
+    }
+
+    @GetMapping("/user/preferredcompanies")
+    public Page<String> getPreferredCompanies(
+            @RequestHeader String Authorization,
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        Long id = userService.userIdFromToken(Authorization);
+        return userService.getPreferredCompaniesByUserId(id, page, size);
+    }
+
+    @GetMapping("/user/preferredindustries")
+    public Page<String> getPreferredIndustries(
+            @RequestHeader String Authorization,
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        Long id = userService.userIdFromToken(Authorization);
+        return userService.getPreferredIndustriesByUserId(id, page, size);
+    }
 }

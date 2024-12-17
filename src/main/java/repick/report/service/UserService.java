@@ -12,7 +12,11 @@ import java.util.List;
 public interface UserService {
     Long userIdFromToken(String bearerToken);
     User getUserByUserId(Long id);
+    Page<String> getPreferredCompaniesByUserId(Long id, int page, int size);
+    Page<String> getPreferredIndustriesByUserId(Long id, int page, int size);
     Slice<CompanyReport> getCompanyReportsByUserId(Long id, int page, int size);
     Slice<IndustryReport> getIndustryReportsByUserId(Long id, int page, int size);
+    Slice<CompanyReport> getBookmarkCompanyReportsByUserId(Long id, int page, int size);
+    Slice<IndustryReport> getBookmarkIndustryReportsByUserId(Long id, int page, int size);
 
 }
