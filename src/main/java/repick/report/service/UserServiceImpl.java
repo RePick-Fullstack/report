@@ -72,6 +72,16 @@ public class UserServiceImpl implements UserService {
         return userReportRepository.findBookmarkIndustryReportsByUserId(id.toString(), PageRequest.of(page, size));
     }
 
+    @Override
+    public Slice<CompanyReport> getCompanyRecommendedReportsByUserId(Long id, int page, int size) {
+        return userReportRepository.findCompanyRecommendedReportsByUserId(id.toString(), PageRequest.of(page, size));
+    }
+
+    @Override
+    public Slice<IndustryReport> getIndustryRecommendedReportsByUserId(Long id, int page, int size) {
+        return userReportRepository.findIndustryRecommendedReportsByUserId(id.toString(), PageRequest.of(page, size));
+    }
+
     public static <T> Page<T> convertListToPage(List<T> list, Pageable pageable) {
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), list.size());

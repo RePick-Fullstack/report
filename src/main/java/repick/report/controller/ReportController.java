@@ -111,4 +111,24 @@ public class ReportController {
         Long id = userService.userIdFromToken(Authorization);
         return userService.getPreferredIndustriesByUserId(id, page, size);
     }
+
+    @GetMapping("/user/companyrecommendedreports")
+    public Slice<CompanyReport> getCompanyReportRecommendedReports(
+            @RequestHeader String Authorization,
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        Long id = userService.userIdFromToken(Authorization);
+        return userService.getCompanyRecommendedReportsByUserId(id, page, size);
+    }
+
+    @GetMapping("/user/industryrecommendedreports")
+    public Slice<IndustryReport> getIndustryRecommendedReports(
+            @RequestHeader String Authorization,
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        Long id = userService.userIdFromToken(Authorization);
+        return userService.getIndustryRecommendedReportsByUserId(id, page, size);
+    }
 }

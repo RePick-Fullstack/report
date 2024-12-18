@@ -18,5 +18,7 @@ public interface UserService {
     Slice<IndustryReport> getIndustryReportsByUserId(Long id, int page, int size);
     Slice<CompanyReport> getBookmarkCompanyReportsByUserId(Long id, int page, int size);
     Slice<IndustryReport> getBookmarkIndustryReportsByUserId(Long id, int page, int size);
+    Slice<CompanyReport> getCompanyRecommendedReportsByUserId(Long id, int page, int size);
+    Slice<IndustryReport> getIndustryRecommendedReportsByUserId(Long id, int page, int size);
 
 }
